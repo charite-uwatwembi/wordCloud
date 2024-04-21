@@ -23,23 +23,29 @@ words.forEach(word => {
     }
 });
 
+
 let sorted = Object.keys(result);
-sorted.sort((a, b) => b[1] - a[1]);
+sorted.sort((a, b) => result[b] - result[a]);
 
 const newValue = sorted.slice(0, 12)
 
-console.log(newValue);
-
-
-newValue.forEach(word => {
+newValue.forEach((word, index) => {
+    const fontSize = 64 - index * 4; 
     const span = document.createElement("span");
-    span.textContent = word
-    
-    cloud.appendChild(span)
-    span.style.cssText = `display: flex`
-    console.log(span)
-   
+    span.textContent = word;
+    span.style.cssText = `
+        font-size: ${fontSize}px; 
+        margin: 10px; 
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        transform: rotate(${(Math.random() - 0.5) * 30}deg);
+        color: hsl(${Math.random() * 360}, 70%, 50%);
+        
+        `;
+    cloud.appendChild(span);
 })
+
 
 
 
